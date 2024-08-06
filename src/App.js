@@ -1,22 +1,41 @@
-// src/App.js
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Dashboard from './components/Dashboard';
-import { GlobalStyles } from './styles/Globlastyles';
+import styled from 'styled-components';
+import { GlobalStyles, theme } from './styles/Globlastyles';
 
 
-function App() {
-  return (
-    <div style={{ display: 'flex' }}>
-      <GlobalStyles />
+
+
+const AppContainer = styled.div`
+  display: flex;
+  height: 100vh;
+  background-color: ${props => props.theme.colors.primary}; /* Black background for the entire app */
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 80px; /* Adjust margin to match sidebar width */
+  padding: ${props => props.theme.spacing.large};
+  background-color: ${props => props.theme.colors.primary}; /* Ensure background matches the theme */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+`;
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <GlobalStyles/>
+    <AppContainer>
       <Sidebar />
-      <div style={{ flex: 1 }}>
-        <Navbar />
+      <MainContent>
+        <Header />
         <Dashboard />
-      </div>
-    </div>
-  );
-}
+      </MainContent>
+    </AppContainer>
+  </ThemeProvider>
+);
 
 export default App;

@@ -11,6 +11,7 @@ const NavbarContainer = styled.div`
   align-items: center;
   padding: 0 20px;
   color: #ffffff;
+ 
 `;
 
 const SearchBox = styled.div`
